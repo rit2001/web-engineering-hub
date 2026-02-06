@@ -1,0 +1,7 @@
+# ignore frontend for now
+frontend/
+
+# always ignore
+node_modules
+.env
+.DS_Store

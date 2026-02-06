@@ -1,7 +1,10 @@
 # ignore frontend for now
 frontend/
 
+# env files (IMPORTANT)
+.env
+config.env
+
 # always ignore
 node_modules
-.env
 .DS_Store

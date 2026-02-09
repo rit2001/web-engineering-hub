@@ -19,6 +19,8 @@ export const instance = new RazorPay({
   key_secret: process.env.RAZORPAY_API_SECRET,
 });
 
-// ❌ DO NOT use app.listen() on Vercel
-// ✅ Export app for serverless
+
+app.listen(process.env.PORT || 8000, ()=>{
+  console.log("server started....");
+})
 export default app;

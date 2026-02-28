@@ -1,21 +1,26 @@
-import { createTransport } from "nodemailer";
+import axios from "axios";
 
 export const sendEmail = async (to, subject, text) => {
-
-    const transporter = createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT),
-        secure: Number(process.env.SMTP_PORT) === 465, // ✅ important
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
+  await axios.post(
+    "https://send.api.mailtrap.io/api/send",
+    {
+      from: {
+        email: "no-reply@demomailtrap.co",
+        name: "CourseHub",
+      },
+      to: [
+        {
+          email: to,
         },
-    });
-
-    await transporter.sendMail({
-        from: process.env.SMTP_USER, // better than hardcoding gmail
-        to,
-        subject,
-        text,
-    });
+      ],
+      subject: subject,
+      text: text,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "Api-Token": process.env.MAILTRAP_API_TOKEN,
+      },
+    }
+  );
 };

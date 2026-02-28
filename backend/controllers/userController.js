@@ -219,7 +219,7 @@ export const updateProfilePicture = catchAsyncError(async(req,res,next)=>{
 });
 
 
-// 8 .) Forgte Password
+// 8 .) Forget Password
 
 
 export const forgetPassword = catchAsyncError(async(req,res,next)=>{
@@ -247,7 +247,7 @@ export const forgetPassword = catchAsyncError(async(req,res,next)=>{
     const message=`Click on the link to reset your password.${url}.If you have not request then please ignore.`
 
     //Send token via email
-    await sendEmail(user.email,"CourseHub Reset Password",message);
+    //await sendEmail(user.email,"CourseHub Reset Password",message);
 
 
 

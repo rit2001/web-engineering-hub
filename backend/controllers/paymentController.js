@@ -54,19 +54,17 @@ export const paymentVerification = catchAsyncError(async(req,res,next) => {
 
   //datadase comes here
 
-  await PaymentAddress.create({
-    razorpay_payment_id,
-    razorpay_order_id,
-    razorpay_signature
+  await Payment.create({
+  razorpay_payment_id,
+  razorpay_subscription_id: subscription_id,
+  razorpay_signature
+});
 
-  });
+user.subscription.status = "active";
 
+await user.save();
 
-  user.subscription.status="active";
-
-  await user.save();
-
-  res.res.redirect(`${process.env.FRONTEND_URL}/paymentsuccess=${razorpay_payment_id}`);
+res.redirect(`${process.env.FRONTEND_URL}/paymentsuccess?reference=${razorpay_payment_id}`);
 
 
 });
